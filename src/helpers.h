@@ -1,6 +1,14 @@
 #ifndef HELPERS
 #define HELPERS
 
-int* fillNumberArray(const int length, int value);
+#include "raylib.h"
+#include "string.h"
+#include "floppy.h"
+
+Color GetColorFromIndex(int index);
+
+int* FillNumberArray(int* array, const int length, int value);
+
+void ValueSwap(int* array1, int index1, int* array2, int index2);
 
 #endif

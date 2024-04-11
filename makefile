@@ -10,12 +10,15 @@ test:
 	./floppysolver
 
 compile: $(MAIN)
-	clang -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL lib/libraylib.a src/main.c -I raylib -o floppysolver
+	clang -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL lib/libraylib.a src/main.c src/floppy.c src/helpers.c -I raylib -o floppysolver
 
 clean:
 	rm -f floppysolver
 	rm -rf floppysolver.dSYM
 
+linkerCheck:
+	clear
+	clang -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL lib/libraylib.a src/main.c -I raylib -o floppysolver -v
 
 time: 
 	make compile

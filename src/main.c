@@ -9,7 +9,8 @@ const int screenHeight = 450;
 FloppyCube floppy;
 
 void setup(){
-    floppy = CreateFloppyCube();
+    floppy = InitFloppyCube(floppy);
+    floppy = ExecuteTurn(floppy, R);
 }
 
 int main(){
@@ -23,13 +24,14 @@ int main(){
 
     Camera3D camera = {0};
 
-    camera.position = (Vector3){ 10.0f, 10.0f, 10.0f };
-    camera.target = (Vector3){ 0.0f, 0.0f, 0.0f };
+    camera.position = (Vector3){10.0f, 10.0f, 10.0f};
+    camera.target = (Vector3){0.0f, 0.0f, 0.0f};
     camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };
     camera.fovy = 45.0f;
     camera.projection = CAMERA_PERSPECTIVE;       
 
     float frame;
+    float angle = 0;
 
     while(!WindowShouldClose()){
         frame += 0.05;
@@ -38,13 +40,41 @@ int main(){
         ClearBackground(LIGHTGRAY);
 
         BeginMode3D(camera);
-        DrawCube(cubePos, 2.0, 2.0, 2.0, GREEN);
-        DrawCubeWires(cubePos, 2.0, 2.0, 2.0, MAROON);
+        DrawFloppyCube(floppy);
         EndMode3D();
 
-        EndDrawing();
+        DrawFPS(10,10);
 
+        EndDrawing();
         
+        // camera.position.y = sin(frame/2.0) * 10.0;
+
+        if(IsKeyDown(KEY_LEFT)){
+            angle += 0.03;
+            camera.position.x = 20*sin(angle);
+            camera.position.z = 20*cos(angle);
+        }else if(IsKeyDown(KEY_RIGHT)){
+            angle -= 0.03;
+            camera.position.x = 20*sin(angle);
+            camera.position.z = 20*cos(angle);
+        }else if(IsKeyDown(KEY_UP)){
+            camera.position.y += 0.3;
+        }else if(IsKeyDown(KEY_DOWN)){
+            camera.position.y -= 0.3;
+        }
+
+        if(IsKeyReleased(KEY_F)){
+            floppy = ExecuteTurn(floppy, F);
+        }
+        if(IsKeyReleased(KEY_R)){
+            floppy = ExecuteTurn(floppy, R);
+        }
+        if(IsKeyReleased(KEY_L)){
+            floppy = ExecuteTurn(floppy, L);
+        }
+        if(IsKeyReleased(KEY_B)){
+            floppy = ExecuteTurn(floppy, B);
+        }
     }
 
     CloseWindow();
