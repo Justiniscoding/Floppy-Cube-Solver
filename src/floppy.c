@@ -119,3 +119,21 @@ FloppyCube ExecuteTurn(FloppyCube cube, int turn){
 
     return cube;
 }
+
+FloppyCube RandomScramble(FloppyCube cube){
+    int previous;
+
+    for(int i = 0; i < 7; i++){
+        int num = RandomRange(3);
+
+        while(previous == num){
+            num = RandomRange(3);
+        }
+
+        cube = ExecuteTurn(cube, num);
+
+        previous = num;
+    }
+
+    return cube;
+}

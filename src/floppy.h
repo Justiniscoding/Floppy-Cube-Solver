@@ -42,6 +42,7 @@ typedef enum _Turns Turns;
 
 void DrawFloppyCube(FloppyCube floppyCube);
 
+FloppyCube RandomScramble(FloppyCube cube);
 FloppyCube InitFloppyCube(FloppyCube floppyCube);
 FloppyCube ExecuteTurn(FloppyCube cube, int turn);
 

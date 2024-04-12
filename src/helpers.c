@@ -53,3 +53,14 @@ void ValueSwap(int* array1, int index1, int* array2, int index2){
     array1[index1] = array2[index2];
     array2[index2] = temp;
 }
+
+int RandomRange(int max){
+    int divisor = RAND_MAX/(max+1);
+    int num;
+
+    do{ 
+        num = rand() / divisor;
+    }while (num > max);
+
+    return num;
+}

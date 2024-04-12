@@ -1,4 +1,5 @@
 #include <math.h>
+#include <time.h>
 
 #include "raylib.h"
 #include "floppy.h"
@@ -9,6 +10,8 @@ const int screenHeight = 450;
 FloppyCube floppy;
 
 void setup(){
+    srand(time(NULL));
+
     floppy = InitFloppyCube(floppy);
     floppy = ExecuteTurn(floppy, R);
 }
@@ -45,6 +48,15 @@ int main(){
 
         DrawFPS(10,10);
 
+        Vector2 screenPosition = GetWorldToScreen((Vector3){2.0, 2.0, 0.0}, camera);
+        DrawText("R", screenPosition.x, screenPosition.y, 20, BLACK);
+        screenPosition = GetWorldToScreen((Vector3){-2.0, 2.0, 0.0}, camera);
+        DrawText("L", screenPosition.x, screenPosition.y, 20, BLACK);
+        screenPosition = GetWorldToScreen((Vector3){0.0, 2.0, 2.0}, camera);
+        DrawText("F", screenPosition.x, screenPosition.y, 20, BLACK);
+        screenPosition = GetWorldToScreen((Vector3){0.0, 2.0, -2.0}, camera);
+        DrawText("B", screenPosition.x, screenPosition.y, 20, BLACK);
+
         EndDrawing();
         
         // camera.position.y = sin(frame/2.0) * 10.0;
@@ -74,6 +86,9 @@ int main(){
         }
         if(IsKeyReleased(KEY_B)){
             floppy = ExecuteTurn(floppy, B);
+        }
+        if(IsKeyReleased(KEY_S)){
+            floppy = RandomScramble(floppy);
         }
     }
 
