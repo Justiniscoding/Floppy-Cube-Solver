@@ -93,24 +93,28 @@ FloppyCube ExecuteTurn(FloppyCube cube, int turn){
         ValueSwap(cube.topFace, 6, cube.bottomFace, 1);
         ValueSwap(cube.topFace, 7, cube.bottomFace, 0);
         ValueSwap(cube.leftFace, 2, cube.rightFace, 0);
+        ValueSwap(cube.frontFace, 2, cube.frontFace, 0);
     }
     if(turn == R){
         ValueSwap(cube.topFace, 2, cube.bottomFace, 2);
         ValueSwap(cube.topFace, 4, cube.bottomFace, 4);
         ValueSwap(cube.topFace, 7, cube.bottomFace, 7);
         ValueSwap(cube.frontFace, 2, cube.backFace, 0);
+        ValueSwap(cube.rightFace, 2, cube.rightFace, 0);
     }
     if(turn == L){
         ValueSwap(cube.topFace, 0, cube.bottomFace, 0);
         ValueSwap(cube.topFace, 3, cube.bottomFace, 3);
         ValueSwap(cube.topFace, 5, cube.bottomFace, 5);
         ValueSwap(cube.frontFace, 0, cube.backFace, 2);
+        ValueSwap(cube.leftFace, 2, cube.leftFace, 0);
     }
     if(turn == B){
         ValueSwap(cube.topFace, 0, cube.bottomFace, 7);
         ValueSwap(cube.topFace, 1, cube.bottomFace, 6);
         ValueSwap(cube.topFace, 2, cube.bottomFace, 5);
         ValueSwap(cube.leftFace, 0, cube.rightFace, 2);
+        ValueSwap(cube.backFace, 0, cube.backFace, 2);
     }
 
     return cube;
