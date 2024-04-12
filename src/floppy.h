@@ -40,9 +40,10 @@ enum _Turns{
 
 typedef enum _Turns Turns;
 
-void DrawFloppyCube(FloppyCube floppyCube);
+void DoTurn(FloppyCube cube, int turn);
 
 FloppyCube RandomScramble(FloppyCube cube);
+FloppyCube DrawFloppyCube(FloppyCube floppyCube);
 FloppyCube InitFloppyCube(FloppyCube floppyCube);
 FloppyCube ExecuteTurn(FloppyCube cube, int turn);
 

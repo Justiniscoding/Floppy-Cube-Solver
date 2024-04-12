@@ -13,7 +13,6 @@ void setup(){
     srand(time(NULL));
 
     floppy = InitFloppyCube(floppy);
-    floppy = ExecuteTurn(floppy, R);
 }
 
 int main(){
@@ -43,7 +42,7 @@ int main(){
         ClearBackground(LIGHTGRAY);
 
         BeginMode3D(camera);
-        DrawFloppyCube(floppy);
+        floppy = DrawFloppyCube(floppy);
         EndMode3D();
 
         DrawFPS(10,10);
@@ -76,16 +75,16 @@ int main(){
         }
 
         if(IsKeyReleased(KEY_F)){
-            floppy = ExecuteTurn(floppy, F);
+            /*floppy = */DoTurn(floppy, F);
         }
         if(IsKeyReleased(KEY_R)){
-            floppy = ExecuteTurn(floppy, R);
+            /*floppy = */DoTurn(floppy, R);
         }
         if(IsKeyReleased(KEY_L)){
-            floppy = ExecuteTurn(floppy, L);
+            /*floppy = */DoTurn(floppy, L);
         }
         if(IsKeyReleased(KEY_B)){
-            floppy = ExecuteTurn(floppy, B);
+            /*floppy =*/ DoTurn(floppy, B);
         }
         if(IsKeyReleased(KEY_S)){
             floppy = RandomScramble(floppy);
