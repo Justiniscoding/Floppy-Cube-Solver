@@ -42,12 +42,35 @@ FloppyCube DrawFloppyCube(FloppyCube floppyCube){
             bRotating = 0;
         }
     }
-    Vector2 planeSize = {1.9, 1.9};
+    Vector2 planeSize = {1.85, 1.85};
 
     float planeOffset = 0.005;
 
     // Black centre area
-    // DrawCube((Vector3){0.0,0.0,0.0}, 6.0, 2.0, 6.0, BLACK);
+    for(int i = 0; i < 9; i++){
+        Vector3 pos = {0.0, 0.0, 0.0};
+
+        pos.x = (i % 3 - 1) * 2.0;
+        pos.z = floor(i / 3.0) * 2.0 - 2.0;
+
+        if(fRotating && pos.z == 2){
+            continue;
+        }
+
+        if(rRotating && pos.x == 2){
+            continue;
+        }
+
+        if(lRotating && pos.x == -2){
+            continue;
+        }
+
+        if(bRotating && pos.z == -2){
+            continue;
+        }
+
+        DrawCube(pos, 2.0, 2.0, 2.0, BLACK);
+    }
 
     // White and yellow stickers
     DrawPlane((Vector3){0.0,planeOffset+1.0,0.0}, planeSize, WHITE);
@@ -120,6 +143,13 @@ FloppyCube DrawFloppyCube(FloppyCube floppyCube){
         rlRotatef(progress, 1, 0, 0);
     }
     DrawPlane((Vector3){-2,3+planeOffset,0}, planeSize, GetColorFromIndex(floppyCube.frontFace[0]));
+
+    if(fRotating){
+        DrawCube((Vector3){2, 2, 0}, 2.0, 2.0, 2.0, BLACK);
+        DrawCube((Vector3){0, 2, 0}, 2.0, 2.0, 2.0, BLACK);
+        DrawCube((Vector3){-2, 2, 0}, 2.0, 2.0, 2.0, BLACK);
+    }
+
     if(lRotating){
         rlRotatef(progress, -1, 0, 0);
     }
@@ -140,6 +170,13 @@ FloppyCube DrawFloppyCube(FloppyCube floppyCube){
         rlRotatef(progress, 0, 0, 1);
     }
     DrawPlane((Vector3){0,3+planeOffset,2}, planeSize, GetColorFromIndex(floppyCube.rightFace[0]));
+
+    if(rRotating){
+        DrawCube((Vector3){0, 2, 2}, 2.0, 2.0, 2.0, BLACK);
+        DrawCube((Vector3){0, 2, 0}, 2.0, 2.0, 2.0, BLACK);
+        DrawCube((Vector3){0, 2, -2}, 2.0, 2.0, 2.0, BLACK);
+    }
+
     if(fRotating){
         rlRotatef(progress, 0, 0, -1);
     }
@@ -160,6 +197,13 @@ FloppyCube DrawFloppyCube(FloppyCube floppyCube){
         rlRotatef(progress, 0, 0, 1);
     }
     DrawPlane((Vector3){0,3+planeOffset,-2}, planeSize, GetColorFromIndex(floppyCube.leftFace[0]));
+
+    if(lRotating){
+        DrawCube((Vector3){0, 2, 2}, 2.0, 2.0, 2.0, BLACK);
+        DrawCube((Vector3){0, 2, 0}, 2.0, 2.0, 2.0, BLACK);
+        DrawCube((Vector3){0, 2, -2}, 2.0, 2.0, 2.0, BLACK);
+    }
+
     if(bRotating){
         rlRotatef(progress, 0, 0, -1);
     }
@@ -180,6 +224,13 @@ FloppyCube DrawFloppyCube(FloppyCube floppyCube){
         rlRotatef(progress, 1, 0, 0);
     }
     DrawPlane((Vector3){2,3+planeOffset,0}, planeSize, GetColorFromIndex(floppyCube.backFace[0]));
+
+    if(bRotating){
+        DrawCube((Vector3){2, 2, 0}, 2.0, 2.0, 2.0, BLACK);
+        DrawCube((Vector3){-2, 2, 0}, 2.0, 2.0, 2.0, BLACK);
+        DrawCube((Vector3){0, 2, 0}, 2.0, 2.0, 2.0, BLACK);
+    }
+
     if(rRotating){
         rlRotatef(progress, -1, 0, 0);
     }
