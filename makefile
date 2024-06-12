@@ -10,7 +10,7 @@ test:
 	./floppysolver
 
 compile: $(MAIN)
-	clang -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL lib/libraylib.a src/main.c src/floppy.c src/helpers.c -I raylib -o floppysolver
+	clang -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL lib/libraylib.a src/main.c src/floppy.c src/helpers.c src/moves.c -I raylib -o floppysolver
 
 clean:
 	rm -f floppysolver

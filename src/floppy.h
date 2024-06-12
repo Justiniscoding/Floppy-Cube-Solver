@@ -42,9 +42,12 @@ typedef enum _Turns Turns;
 
 void DoTurn(FloppyCube cube, int turn);
 
+bool IsCubeSolved(FloppyCube cube);
+
 FloppyCube RandomScramble(FloppyCube cube);
 FloppyCube DrawFloppyCube(FloppyCube floppyCube);
 FloppyCube InitFloppyCube(FloppyCube floppyCube);
 FloppyCube ExecuteTurn(FloppyCube cube, int turn);
+FloppyCube CloneFloppyCube(FloppyCube cube, FloppyCube clone);
 
 #endif

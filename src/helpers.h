@@ -10,6 +10,7 @@ Color GetColorFromIndex(int index);
 int RandomRange(int max);
 
 int* FillNumberArray(int* array, const int length, int value);
+void CloneNumberArray(int* array, int size, int* clone);
 
 void ValueSwap(int* array1, int index1, int* array2, int index2);
 

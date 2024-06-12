@@ -17,7 +17,9 @@ int rRotating = 0;
 int lRotating = 0;
 int bRotating = 0;
 
-int animSpeed = 4;
+int animSpeed = 14;
+
+int turnStack[10];
 
 FloppyCube DrawFloppyCube(FloppyCube floppyCube){
     if(fRotating || rRotating || lRotating || bRotating){
@@ -40,6 +42,14 @@ FloppyCube DrawFloppyCube(FloppyCube floppyCube){
         if(bRotating){
             floppyCube = ExecuteTurn(floppyCube, B);
             bRotating = 0;
+        }
+
+        if(turnStack[0] != 0){
+            DoTurn(floppyCube, turnStack[0] - 1);
+
+            for(int i = 1; i < 10; i++){
+                turnStack[i-1] = turnStack[i];
+            }
         }
     }
     Vector2 planeSize = {1.85, 1.85};
@@ -278,6 +288,18 @@ FloppyCube ExecuteTurn(FloppyCube cube, int turn){
 }
 
 void DoTurn(FloppyCube cube, int turn){
+    if(fRotating || bRotating || rRotating || lRotating){
+        int stackLength = 0;
+        
+        for(int i = 0; i < 10; i++){
+            if(turnStack[i] != 0){
+                stackLength = i + 1;
+            }
+        }
+
+        turnStack[stackLength] = turn+1;
+        return;
+    }
     if(turn == F){
         fRotating = 1;
     }
@@ -302,10 +324,37 @@ FloppyCube RandomScramble(FloppyCube cube){
             num = RandomRange(3);
         }
 
-        cube = ExecuteTurn(cube, num);
+        DoTurn(cube, num);
 
         previous = num;
     }
 
     return cube;
+}
+
+FloppyCube CloneFloppyCube(FloppyCube cube, FloppyCube clone){
+    CloneNumberArray(cube.topFace, 8, clone.topFace);
+    CloneNumberArray(cube.bottomFace, 8, clone.bottomFace);
+    CloneNumberArray(cube.rightFace, 3, clone.rightFace);
+    CloneNumberArray(cube.frontFace, 3, clone.frontFace);
+    CloneNumberArray(cube.leftFace, 3, clone.leftFace);
+    CloneNumberArray(cube.backFace, 3, clone.backFace);
+
+    return clone;
+}
+
+bool IsCubeSolved(FloppyCube cube){
+    bool isSolved = true;
+
+    for(int i = 0; i < 8; i++){
+        if(cube.topFace[i] != CWHITE){
+            isSolved = false;
+        }
+    }
+
+    if(cube.rightFace[0] != cube.rightFace[1]){
+        isSolved = false;
+    }
+
+    return isSolved;
 }

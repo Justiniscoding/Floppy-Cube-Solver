@@ -64,3 +64,9 @@ int RandomRange(int max){
 
     return num;
 }
+
+void CloneNumberArray(int* array, int size, int* clone){
+    for(int i = 0; i < size; i++){
+        clone[i] = array[i];
+    }
+}

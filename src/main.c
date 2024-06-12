@@ -3,6 +3,7 @@
 
 #include "raylib.h"
 #include "floppy.h"
+#include "moves.h"
 
 const int screenWidth = 800;
 const int screenHeight = 450;
@@ -10,9 +11,11 @@ const int screenHeight = 450;
 FloppyCube floppy;
 
 void setup(){
-    srand(time(NULL));
+    srand(time(NULL)); 
 
     floppy = InitFloppyCube(floppy);
+
+    // moveList = CreateMoveList(10);
 }
 
 int main(){
@@ -88,6 +91,9 @@ int main(){
         }
         if(IsKeyReleased(KEY_S)){
             floppy = RandomScramble(floppy);
+        }
+        if(IsKeyReleased(KEY_A)){
+            floppy = SolveCube(floppy);
         }
     }
 
