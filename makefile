@@ -24,3 +24,18 @@ time:
 	make compile
 	time ./floppysolver
 
+macBuild:
+	make compile
+	rm -rf floppysolver.app
+
+	mkdir floppysolver.app
+	mkdir floppysolver.app/Contents
+	mkdir floppysolver.app/Contents/MacOS
+	mkdir floppysolver.app/Contents/Resources
+	touch floppysolver.app/Contents/Info.plist
+
+	mv floppysolver floppysolver.app/Contents/MacOS
+
+	echo "<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"> <plist version="1.0"> <dict> <key>CFBundleExecutable</key> <string>my_app</string> </dict> </plist>" >> floppysolver.app/Contents/Info.plist
+
+

@@ -2,6 +2,8 @@
 #include <time.h>
 
 #include "raylib.h"
+#define RAYGUI_IMPLEMENTATION
+#include "raygui.h" 
 #include "floppy.h"
 #include "moves.h"
 
@@ -87,13 +89,17 @@ int main(){
             /*floppy = */DoTurn(floppy, L);
         }
         if(IsKeyReleased(KEY_B)){
-            /*floppy =*/ DoTurn(floppy, B);
-        }
-        if(IsKeyReleased(KEY_S)){
-            floppy = RandomScramble(floppy);
-        }
-        if(IsKeyReleased(KEY_A)){
+            // /*floppy =*/ DoTurn(floppy, B);
+            
             floppy = SolveCube(floppy);
+        }
+
+        if(GuiButton((Rectangle){ 155, 375, 150, 75 }, "Solve")){
+            floppy = SolveCube(floppy);
+            // printf("hello world");
+        }
+        if(GuiButton((Rectangle){ 0, 375, 150, 75 }, "Scramble")){
+            floppy = RandomScramble(floppy);
         }
     }
 

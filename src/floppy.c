@@ -317,7 +317,7 @@ void DoTurn(FloppyCube cube, int turn){
 FloppyCube RandomScramble(FloppyCube cube){
     int previous;
 
-    for(int i = 0; i < 7; i++){
+    for(int i = 0; i < 9; i++){
         int num = RandomRange(3);
 
         while(previous == num){

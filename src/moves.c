@@ -28,7 +28,7 @@ int* ShiftMoveList(int* movelist){
 }
 
 FloppyCube SolveCube(FloppyCube cube){
-    int* turns;
+    int turns[7];
     FillNumberArray(turns, 7, -1);
 
     FloppyCube clone;
